@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Curso de Javascript</title>
+	<script>
+		
+		// Manipulando elementos - innerHTML		
+
+	</script> 	
+</head>
+<body> 
+
+	<p id="texto">Curso de Javascript</p>
+
+	<input type="text" id="cxtexto" value="Curso de Javascript - XPTO">
+
+	<div id="div">Texto da div</div>
+
+	<script>
+		
+		var cxtexto = document.getElementById("texto").innerHTML = "Alterando o conteúdo da tag p";
+
+		alert(document.getElementById("div").innerHTML);
+
+		// document.getElementById("div").innerHTML = "Novo texto";
+		// alert(cxtexto);
+
+		//document.getElementById("cxtexto").value="Curso de Angular";
+
+		//var cxtexto = document.getElementById("cxtexto").value;
+		//alert(cxtexto);		
+
+	</script>
+	
+</body>
+</html>
