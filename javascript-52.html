@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Curso de Javascript</title>
+	<style>
+        body {
+            margin-top: 40px;
+            margin-left: 40px;
+        }
+
+        #jogo {
+            width: 160px;
+            height: 160px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+        }
+
+		.posJogo {
+            width: 50px;
+            height: 50px;
+            margin: 0px;
+            padding: 0px;
+            cursor: pointer;
+            display: flex;             
+        }
+
+        #posicao1 {
+            border-right: 1px solid #000; 
+            border-bottom: 1px solid #000; 
+        }
+
+        #posicao2 {
+            border-right: 1px solid #000; 
+            border-left: 1px solid #000; 
+            border-bottom: 1px solid #000; 
+        }
+
+        #posicao3 {
+            border-left: 1px solid #000; 
+            border-bottom: 1px solid #000; 
+        }
+
+        #posicao4 {
+            border-right: 1px solid #000; 
+            border-top: 1px solid #000; 
+            border-bottom: 1px solid #000; 
+        }
+
+        #posicao5 {
+            border: 1px solid #000;
+        }
+
+        #posicao6 {
+            border-left: 1px solid #000; 
+            border-top: 1px solid #000; 
+            border-bottom: 1px solid #000; 
+        }
+
+        #posicao7 {             
+            border-right: 1px solid #000; 
+            border-top: 1px solid #000; 
+        }
+
+        #posicao8 {
+            border-left: 1px solid #000; 
+            border-right: 1px solid #000; 
+            border-top: 1px solid #000; 
+        }
+
+        #posicao9 {            
+            border-left: 1px solid #000; 
+            border-top: 1px solid #000; 
+        }
+
+	</style> 	
+	<script>
+
+		// Jogo da velha - parte II  
+        var jogo = [];
+        var tabuleiro = [];
+        var quemJoga = 0; // 0 = Jogador; 1 = CPU;
+        var verifica;
+        var jogando = true;
+        var nivel = 1;
+        var jogadaCpu = 1;
+        var quemComeca = 1;
+
+        function jogar(p) {
+            if((jogando) && (quemJoga == 0)) {
+                switch(p) {
+                    case 1:
+                        if(jogo[0][0] == "") {
+                            jogo[0][0] = "X";
+                            quemJoga = 1;
+                        }
+                    break;
+                }
+            }
+        } 
+
+        function iniciar() {
+            jogando = true;
+            jogadaCpu = 1;
+            jogo = [
+                ["", "", ""],
+                ["", "", ""],
+                ["", "", ""]
+            ];
+        } 
+
+        window.addEventListener("load", iniciar);
+	 			
+	</script>		
+</head>
+	<body> 
+		
+	   <div id="menu">
+            <div id="quemComeca"></div>
+            <button onclick="">Iniciar Jogo</button>           
+       </div><br />
+
+       <div id="jogo">           
+            <div id="posicao1" class="posJogo" onclick="jogar(1)"></div>
+            <div id="posicao2" class="posJogo" onclick="jogar(2)"></div>
+            <div id="posicao3" class="posJogo" onclick="jogar(3)"></div>
+            <div id="posicao4" class="posJogo" onclick="jogar(4)"></div>   
+            <div id="posicao5" class="posJogo" onclick="jogar(5)"></div>
+            <div id="posicao6" class="posJogo" onclick="jogar(6)"></div>
+            <div id="posicao7" class="posJogo" onclick="jogar(7)"></div>
+            <div id="posicao8" class="posJogo" onclick="jogar(8)"></div>
+            <div id="posicao9" class="posJogo" onclick="jogar(9)"></div>
+       </div>
+
+	</body>
+</html>
