@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Curso de Javascript</title>
+	<style>
+		#slider-show {
+			width: 1000px;
+			height: 300px;			
+			border: 1px solid #000;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.btn-slider {
+			background-color: rgba(0, 0, 0, 0.4);
+			height: 30%;
+			color: #fff;
+			cursor: pointer;
+			outline: none;
+			margin: 10px;
+			border: none;
+		}
+
+		#slider-load {
+			width: 100%;
+			height: 5px;
+			margin-top: 25%;
+			border: 1px solid rgba(255, 255, 255, 0.3);
+		}
+
+		#slider-barra {
+			width: 50%;
+			height: 100%;
+			background-color: #fff;			
+		}
+	</style>	
+	<script>
+
+		// Slider show - mostrar slider	add barra carregamento automática	
+		var images = [];
+		var slider;
+		var imgAtual;
+		var maxImg;
+		var tmp;
+		var tempoTroca;
+		var tempoCarregar;
+		var loadBarra;
+
+		function preCarregamento() {
+			var s = 1;			
+			for(var i = 0; i < 5; i ++) {
+				images[i] = new Image();
+				images[i].src="images/s"+s+".jpg";
+				s ++;
+			}
+		}
+
+		function carregarImg(img) {
+			slider.style.backgroundImage="url('"+images[img].src+"')";
+		}
+
+		function inicia() {
+			preCarregamento();
+			imgAtual = 0;
+			maxImg = images.length -1;
+			slider = document.getElementById("slider-show");
+			loadBarra = document.getElementById("slider-barra");
+			carregarImg(imgAtual);
+			tempoTroca = 0;
+			animacao();			
+		}
+
+		function troca(dir) {
+			tempoTroca = 0;
+			imgAtual += dir;
+			if(imgAtual > maxImg) {
+				imgAtual = 0;
+			} else if (imgAtual < 0) {
+				imgAtual = maxImg; 
+			}
+			carregarImg(imgAtual);
+		}
+
+		function animacao() {
+			tempoTroca ++;
+			if(tempoTroca >= 500) {
+				tempoTroca = 0;
+				troca(1);
+			}
+			tempoCarregar = tempoTroca/5;
+			loadBarra.style.width = tempoCarregar + "%";
+			window.requestAnimationFrame(animacao);			
+		}
+
+		window.addEventListener("load", inicia);		
+
+	</script>		
+</head>
+	<body> 	
+		<div id="slider-show">
+			<button class="btn-slider" onclick="troca(-1)"><</button>
+			<div id="slider-load">
+				<div id="slider-barra">
+					
+				</div>
+			</div>
+			<button class="btn-slider" onclick="troca(-1)">></button>		
+		</div>			
+	</body>
+</html>
