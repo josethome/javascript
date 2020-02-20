@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Curso de Javascript</title>
+	<style>
+
+	</style>	
+	<script>
+
+		// Métodos para manipulação de strings - parte II
+		
+	</script>		
+</head>
+	<body> 
+		<p id="txt">CTBA Cursos - Curso de Javascript - exercício 45 do curso de javascript
+		</p>
+
+		<script>
+			var texto = document.getElementById("txt").innerHTML;
+			var texto2 = " - Texto teste.";
+			//var texto2 = " - exercício 45 do curso de javascript";
+
+			var res = texto.concat(" - exercício 45 do curso de javascript" + texto2);
+			//var res = texto.charCodeAt(0);
+			//var res = texto.charAt(12);
+			//var res = texto.replace(/curso/ig,"exercício");
+			// var res = texto.search(/curso/i);			
+
+			document.write(res);
+			//document.write(String.fromCharCode(67));
+		</script>		
+	</body>
+</html>
