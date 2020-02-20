@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Curso de Javascript</title>
+	<style>
+		#slider-show {
+			width: 1000px;
+			height: 300px;			
+			border: 1px solid #000;
+		}
+	</style>	
+	<script>	
+
+		// Slider Show - mostrar slider		
+		var images = [];
+		var slider;
+		var imgAtual;
+		var maxImg;
+		var tmp;
+		var tempoTroca;
+
+		function preCarregamento() {
+			var s = 1;			
+			for(var i = 0; i < 5; i ++) {
+				images[i] = new Image();
+				images[i].src="images/s"+s+".jpg";
+				s ++;
+			}
+		}
+
+		function carregarImg(img) {
+			slider.style.backgroundImage ="url('"+images[img].src+"')";
+		}
+
+		function iniciar() {
+			preCarregamento();
+			imgAtual = 0;
+			maxImg = images.length -1;
+			slider = document.getElementById("slider-show");
+			carregarImg(imgAtual);
+			tempoTroca = 3000;
+			tmp = setInterval(troca, tempoTroca)
+		}
+
+		function troca() {
+			imgAtual ++;
+			if(imgAtual > maxImg) {
+				imgAtual = 0;
+			}
+			carregarImg(imgAtual);
+		}
+
+		window.addEventListener("load", iniciar);		
+
+	</script>		
+</head>
+	<body> 	
+		<div id="slider-show"></div>			
+	</body>
+</html>
