@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Curso de Javascript</title>
+	<style>
+
+	</style>	
+	<script>
+
+		// String match - parte I
+		
+	</script>		
+</head>
+	<body> 
+		<p id="txt">
+			CTBA Cursos - Curso de Javascript - exercício 45 do curso de javascript
+		</p>
+
+		<script>
+			var texto = document.getElementById("txt").innerHTML;
+
+			var res = texto.match(/Javascript/ig);
+
+			document.write(res + " : " + res.length + "<br>");
+
+			document.write(res[1]);
+		</script>		
+	</body>
+</html>
