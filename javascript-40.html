@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Curso de Javascript</title>
+	<style>
+		#jogador {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			background-color: #00f;
+			width: 50px;
+			height: 50px;
+		}
+	</style>	
+	<script>
+
+		// Request animation frames - desafio
+		var jog;
+		var vel;
+		var dx;
+		var dy;
+		var px;
+		var py;
+		var anima;
+		var estado;
+
+		function iniciar() {
+			vel = 5;
+			dx  = 1;
+			dy  = 0;
+			px  = 0;
+			py  = 0;
+
+			// 1 = movendo => 0 = parada
+			estado = 1;
+			jog = document.getElementById("jogador");
+			jog.addEventListener("click", moverParar);	
+			document.getElementById("botao-um").addEventListener("click", mover);	
+			document.getElementById("botao-dois").addEventListener("click", parar);	
+			game();
+		}
+
+		function moverParar() {
+			if(estado) {
+				estado = 0;
+				jog.style.backgroundColor = "#f33";
+				cancelAnimationFrame(anima);
+			} else {
+				estado = 1; 
+				jog.style.backgroundColor ="#009";
+				anima = requestAnimationFrame(game);
+			} 
+		}
+
+		function mover() {
+			if(!estado) {
+				estado = 1;
+				jog.style.backgroundColor = "#009";
+				anima = requestAnimationFrame(game);
+			} 
+		}
+
+		function parar() {			
+			estado = 0;
+			jog.style.backgroundColor = "#f33";
+			cancelAnimationFrame(anima);			 
+		}
+
+		function game() {
+			px += (dx * vel);
+			// py += (dy * vel);
+			jog.style.left = px + "px";
+			// jog.style.top = py + "px";
+			if(px > 800) {
+				dx =- 1;
+			} else if (px < 0) {
+				dx = 1;
+			}
+
+			anima = requestAnimationFrame(game);
+		}	
+
+		window.addEventListener("load", iniciar)	
+
+	</script>		
+</head>
+	<body> 		
+		<div id="jogador"></div><br><br><br>
+		<button id="botao-um">Iniciar</button>
+		<button id="botao-dois">Parar</button>	
+	</body>
+</html>
