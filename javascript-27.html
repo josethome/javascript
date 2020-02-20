@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Curso de Javascript</title>
+	<style>
+		label {
+			display: block;			
+		}
+
+		input {
+			display: block;
+		}
+
+		input[type=submit], label {
+			margin-top: 10px;
+		}
+	</style>
+	<script>
+
+		// Manipulando formulários com javascript
+		
+	</script>		
+</head>
+<body> 
+
+	<form name="curso1" id="curso1" action="#" method="post">
+		<label>Nome</label>
+		<input type="text" name="fNome" id="teste" value="Primeiro form - 1">
+		<label>Senha</label>
+		<input type="password" name="fSenha" value="123">
+		<input type="submit" name="btnEnviar" value="Enviar">
+	</form>
+
+	<!-- <form name="curso2" id="curso2" action="#" method="post">
+		<label>Nome</label>
+		<input type="text" name="fNome" id="teste" value="Segundo - 2">
+		<label>Senha</label>
+		<input type="password" name="fSenha" value="123">
+		<input type="submit" name="btnEnviar" value="Enviar">
+	</form> -->
+	<hr />
+
+	<script>
+		
+		document.write(document.getElementById("curso1").elements[0].value);
+
+		var frm = document.forms[0];
+		var elem = frm.elements;
+
+		for(var i = 0; i < elem.length -1; i ++) {
+			elem[i].style.backgroundColor = "#ddd";
+			elem[i].value = "Curso de Javascript";
+		} 		
+
+		//var frm = document.forms.item(0).id;
+		//var frm = document.forms.namedItem("curso1").innerHTML;
+		//document.write(frm);
+
+	</script>	
+</body>
+</html>
