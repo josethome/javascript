@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Curso de Javascript</title>
+	<style>
+        body {
+            margin-top: 40px;
+            margin-left: 40px;
+        }
+
+        #jogo {
+            width: 160px;
+            height: 160px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+        }
+
+		.posJogo {
+            width: 50px;
+            height: 50px;
+            margin: 0px;
+            padding: 0px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+        }
+
+        #posicao1 {
+            border-right: 1px solid #000; 
+            border-bottom: 1px solid #000; 
+        }
+
+        #posicao2 {
+            border-right: 1px solid #000; 
+            border-left: 1px solid #000; 
+            border-bottom: 1px solid #000; 
+        }
+
+        #posicao3 {
+            border-left: 1px solid #000; 
+            border-bottom: 1px solid #000; 
+        }
+
+        #posicao4 {
+            border-right: 1px solid #000; 
+            border-top: 1px solid #000; 
+            border-bottom: 1px solid #000; 
+        }
+
+        #posicao5 {
+            border: 1px solid #000;
+        }
+
+        #posicao6 {
+            border-left: 1px solid #000; 
+            border-top: 1px solid #000; 
+            border-bottom: 1px solid #000; 
+        }
+
+        #posicao7 {             
+            border-right: 1px solid #000; 
+            border-top: 1px solid #000; 
+        }
+
+        #posicao8 {
+            border-left: 1px solid #000; 
+            border-right: 1px solid #000; 
+            border-top: 1px solid #000; 
+        }
+
+        #posicao9 {            
+            border-left: 1px solid #000; 
+            border-top: 1px solid #000; 
+        }
+
+	</style> 	
+	<script>
+
+		// Jogo da velha - parte IV 
+        var jogo = [];
+        var tabuleiro = [];
+        var quemJoga = 0; // 0 = Jogador; 1 = CPU;
+        var verifica;
+        var jogando = true;
+        var nivel = 1;
+        var jogadaCpu = 1;
+        var quemComeca = 1;
+
+        function cpuJoga() {
+            if(jogando) {
+                var linha, col;
+                if(nivel == 1) {
+                    do {
+                        linha = Math.round(Math.random() * 2);
+                        col = Math.round(Math.random() * 2);
+                    } while(jogo[linha][col] != "");
+                    jogo[linha][col] = "O";
+                } else if(nivel == 2) {
+
+                    // Nível 2
+                }
+                verifica = verificaVitoria();
+                if(verifica != "") {
+                    alert(verifica + " Vencedor desta jogada. Vitória!!!");
+                    jogando = false;
+                }
+                atualizaTabuleiro();
+                quemJoga = 0;
+            }
+        }
+
+        function verificaVitoria() {
+            var linha, col;
+
+            // Linhas
+            for(linha = 0; linha < 3; linha ++) {
+                if((jogo[linha][0] == jogo[linha][1]) && (jogo[linha][1] == jogo[linha][2])) {
+                    return jogo[linha][0];
+                }
+            }
+
+            // Colunas
+            for(col = 0; col < 3; col ++) {
+                if((jogo[0][col] == jogo[1][col]) && (jogo[1][col] == jogo[2][col])) {
+                    return jogo[0][col];
+                }
+            }
+
+            // Diagonais
+            if((jogo[0][0] == jogo[1][1]) && (jogo[1][1] == jogo[2][2])) {
+                return jogo[0][0];
+            }
+
+            if((jogo[0][2] == jogo[1][1]) && (jogo[1][1] == jogo[2][0])) {
+                return jogo[0][2];
+            }
+            return "";
+        }
+
+        function jogar(p) {
+            if((jogando) && (quemJoga == 0)) {
+                switch(p) {
+                    case 1:
+                        if(jogo[0][0] == "") {
+                            jogo[0][0] = "X";
+                            quemJoga = 1;
+                        }
+                    break;
+
+                    case 2:
+                        if(jogo[0][1] == "") {
+                            jogo[0][1] = "X";
+                            quemJoga = 1;
+                        }
+                    break;
+
+                    case 3:
+                        if(jogo[0][2] == "") {
+                            jogo[0][2] = "X";
+                            quemJoga = 1;
+                        }
+                    break;
+
+                    case 4:
+                        if(jogo[1][0] == "") {
+                            jogo[1][0] = "X";
+                            quemJoga = 1;
+                        }
+                    break;
+
+                    case 5:
+                        if(jogo[1][1] == "") {
+                            jogo[1][1] = "X";
+                            quemJoga = 1;
+                        }
+                    break;
+
+                    case 6:
+                        if(jogo[1][2] == "") {
+                            jogo[1][2] = "X";
+                            quemJoga = 1;
+                        }
+                    break;
+
+                    case 7:
+                        if(jogo[2][0] == "") {
+                            jogo[2][0] = "X";
+                            quemJoga = 1;
+                        }
+                    break;
+
+                    case 8:
+                        if(jogo[2][1] == "") {
+                            jogo[2][1] = "X";
+                            quemJoga = 1;
+                        }
+                    break;
+
+                    // Caso 9
+                    default:
+                        if(jogo[2][2] == "") {
+                            jogo[2][2] = "X";
+                            quemJoga = 1;
+                        }
+                    break;
+                }
+                if(quemJoga == 1) {
+                    atualizaTabuleiro();
+                    verifica = verificaVitoria();
+                    if(verifica != "") {
+                        alert(verifica + " Vencedor desta jogada. Vitória!!!");
+                        jogando = false;
+                    } 
+                    cpuJoga();               
+                }
+            }
+        } 
+
+        function atualizaTabuleiro() {
+            for(var linha = 0; linha < 3; linha ++) {
+                for(var col = 0; col < 3; col ++) {
+                    if(jogo[linha][col] == "X") {
+                        tabuleiro[linha][col].innerHTML = "X";
+                        tabuleiro[linha][col].style.cursor = "default";
+
+                    } else if(jogo[linha][col] == "O") {
+                        tabuleiro[linha][col].innerHTML = "O";
+                        tabuleiro[linha][col].style.cursor = "default";
+                    } else {
+                        tabuleiro[linha][col].innerHTML = "";
+                        tabuleiro[linha][col].style.cursor = "pointer";
+                    }
+                }
+            }
+        }
+
+        function iniciar() {
+            jogando = true;
+            jogadaCpu = 1;
+            jogo = [
+                ["", "", ""],
+                ["", "", ""],
+                ["", "", ""]
+            ];
+            tabuleiro = [
+                [document.getElementById("posicao1"),document.getElementById("posicao2"),document.getElementById("posicao3")],
+                [document.getElementById("posicao4"),document.getElementById("posicao5"),document.getElementById("posicao6")],
+                [document.getElementById("posicao7"),document.getElementById("posicao8"),document.getElementById("posicao9")]
+            ];
+        } 
+
+        window.addEventListener("load", iniciar);
+	 			
+	</script>		
+</head>
+	<body> 
+		
+	   <div id="menu">
+            <div id="quemComeca"></div>
+            <button onclick="iniciar()">Iniciar Jogo</button>           
+       </div><br />
+
+       <div id="jogo">           
+            <div id="posicao1" class="posJogo" onclick="jogar(1)"></div>
+            <div id="posicao2" class="posJogo" onclick="jogar(2)"></div>
+            <div id="posicao3" class="posJogo" onclick="jogar(3)"></div>
+            <div id="posicao4" class="posJogo" onclick="jogar(4)"></div>   
+            <div id="posicao5" class="posJogo" onclick="jogar(5)"></div>
+            <div id="posicao6" class="posJogo" onclick="jogar(6)"></div>
+            <div id="posicao7" class="posJogo" onclick="jogar(7)"></div>
+            <div id="posicao8" class="posJogo" onclick="jogar(8)"></div>
+            <div id="posicao9" class="posJogo" onclick="jogar(9)"></div>
+       </div>
+
+	</body>
+</html>
