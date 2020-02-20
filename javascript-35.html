@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Curso de Javascript</title>
+	<style>
+		#div1 {
+			width: 100px;
+			height: 100px;
+			border: 1px solid #000;
+			background-color: #fff;			
+		}
+	</style>	
+	<script>
+			
+		// setTimeout e setInterval
+		function mudaCor() {
+			var obj = document.getElementById("div1");
+			var r = Math.floor(Math.random() * 255);
+			var g = Math.floor(Math.random() * 255);
+			var b = Math.floor(Math.random() * 255);
+			obj.style.backgroundColor = "rgb("+r+", "+g+", "+b+")";
+		}
+
+		function iniciar() {
+			tmp = setInterval(mudaCor, 1000);
+		}
+
+		function parar() {
+			clearInterval(tmp);
+		}
+
+		function addEventos() {
+			document.getElementById("botao-um").addEventListener("click", iniciar);
+			document.getElementById("botao-dois").addEventListener("click", parar);
+		}
+		
+		window.addEventListener("load", addEventos);
+
+		//var tmp = setInterval(mudaCor, 3000);	
+
+		//var tmp = setTimeout(mudaCor, 3000);
+
+		//window.addEventListener("load", mudaCor);
+
+	</script>		
+</head>
+	<body> 
+		<div id="div1"></div><br>
+		<button id="botao-um">Iniciar</button>
+		<button id="botao-dois">Parar</button>
+	</body>
+</html>
